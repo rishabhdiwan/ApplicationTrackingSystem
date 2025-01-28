@@ -129,12 +129,15 @@ function send_email_on_status_change($post_id, $post, $update) {
 
     // Get the previous taxonomy term from the database
     $old_status = get_post_meta($post_id, '_previous_status', true);
-
+    // If this is a new post, set the old status to an empty string
+    if (!$update) {
+        $old_status = '';
+    }
     // Update the stored status for future comparisons
     update_post_meta($post_id, '_previous_status', $new_status);
 
     // Check if the status has actually changed
-    if ($old_status !== $new_status) {
+    if ($old_status !== $new_status || ($old_status === '' && $new_status === 'Submitted')) {
         // Get the applicant's email from ACF
         $applicant_email = get_field('email', $post_id);
 
