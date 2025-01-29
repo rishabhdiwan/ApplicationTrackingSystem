@@ -8,8 +8,12 @@ add_action('init', function() {
 // Theme Enqueue
 function ats_enqueue() {
     wp_enqueue_script('custom-scipt', get_template_directory_uri() . 'assets/build/js/index.min.js', array('jquery'), 1.0, true);
+    wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+    // wp_enqueue_script('fontawesome2', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/brands.min.css');
+    // wp_enqueue_script('fontawesome3', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css');
+    // wp_enqueue_script('fontawesome4', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/regular.min.css');
     wp_enqueue_style( 'custom-style', get_template_directory_uri() . '/assets/build/css/style.min.css');
-} 
+}
 add_action('wp_enqueue_scripts', 'ats_enqueue');
 // Thumbnail Support //
 add_theme_support("post-thumbnails");
@@ -24,11 +28,12 @@ add_action('init', 'theme_register_menus');
 // Form Submission //
 function handle_application_submission() {
     // Check if form data is valid
-    if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_FILES['application_document'])) {
+    if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['applicant_phone']) && isset($_FILES['application_document'])) {
 
         // Sanitize user input
         $fullname = sanitize_text_field($_POST['fullname']);
         $email = sanitize_email($_POST['email']);
+        $phone = preg_replace('/[^0-9+\-\s()]/', '', $_POST['applicant_phone']);;
         // Handle the applicant image upload
         $featured_image_id = null; // Default to null
         if (!empty($_FILES['applicant_image']['name'])) {
@@ -91,6 +96,7 @@ function handle_application_submission() {
                     }
                     // Update the ACF email field and attach the document
                     update_field('email', $email, $post_id);
+                    update_field('applicant_phone', $phone, $post_id);
                     update_field('application_document', $file_id, $post_id);
 
                     // Assign default taxonomy term ('Submitted') to the post

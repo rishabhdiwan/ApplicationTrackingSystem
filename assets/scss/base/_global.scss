@@ -5,4 +5,7 @@ body {
 .container {
     max-width: 1152px;
     margin: auto;
+    @include mobile() {
+        padding: 0 14px;
+    }
 }
