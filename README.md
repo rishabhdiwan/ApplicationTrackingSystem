@@ -3,7 +3,7 @@
 **Author:** [Rishabh Diwan](https://rishabhdiwan.netlify.app)  
 
 ---
-![My image](https://github.com/rishabhdiwan/ApplicationTrackingSystem/blob/master/screenshot.png)
+![My image](https://github.com/rishabhdiwan/ApplicationTrackingSystem/blob/master/assets/images/screenshot.png)
 
 ## Description
 
