@@ -4,15 +4,29 @@ Template Name: home
 */
 get_header();
 ?>
-<form action="<?php echo admin_url('admin-post.php'); ?>" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="action" value="submit_application">
-    <input type="text" name="fullname" placeholder="Enter your Full Name" required>
-    <input type="email" name="email" placeholder="Enter your Email" required>
-    <span>Image</span>
-    <input type="file" name="applicant_image" id="applicant_image" required>
-    <span>Application</span>
-    <input type="file" name="application_document" id="application_document" required>
-    <input type="submit" value="Submit">
-</form>
+<div class="home">
+    <div class="form-application">
+        <h2>Application Form</h2>
+        <form action="<?php echo admin_url('admin-post.php'); ?>" method="POST" enctype="multipart/form-data">
+            <div><input type="hidden" name="action" value="submit_application"></div>
+            <div><input type="hidden" name="redirect_to" value="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>"></div>
+            <div><input type="text" name="fullname" placeholder="Enter your Full Name" required></div>
+            <div><input type="email" name="email" placeholder="Enter your Email" required></div>
+            <div>
+                <span>Image</span>
+                <input type="file" name="applicant_image" id="applicant_image" required>
+            </div>
+            <div>
+                <span>Application</span>
+                <input type="file" name="application_document" id="application_document" required>
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <?php if (!empty($_SESSION['submission_status']) && $_SESSION['submission_status'] === 'success') : ?>
+    <p class="success-message">Thank you! Your application has been submitted.</p>
+    <?php unset($_SESSION['submission_status']); // Clear message after displaying ?>
+    <?php endif; ?>
+</div>
 
 <?php get_footer(); ?>

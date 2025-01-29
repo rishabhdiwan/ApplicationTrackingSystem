@@ -1,0 +1,42 @@
+.home {
+    background-image: url('../../../assets/images/form-bg.png');
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    .form-application {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 30px;
+        box-shadow: 1px 0px 15px 0px #333;
+        h2 {
+            text-align: center;
+        }
+        form {
+            text-align: center;
+            input {
+                padding: 10px 20px;
+                margin: 10px;
+                width: 84%;
+            }
+            input[type="submit"] {
+                border: none;
+                color: white;
+                background-color: #d558bc;
+                width: 96%;
+                padding: 15px 0;
+                font-size: 15px;
+                text-transform: uppercase;
+            }
+            input[type="submit"]:hover {
+                border: none;
+                color: white;
+                background-color: #ba0984;
+                cursor: pointer;
+            }
+        }
+    }
+}
