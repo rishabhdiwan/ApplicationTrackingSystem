@@ -1,12 +1,5 @@
 # Application Tracking System
 
-**Author:** [Rishabh Diwan](https://rishabhdiwan.netlify.app)  
-
----
-![My image](https://github.com/rishabhdiwan/ApplicationTrackingSystem/blob/master/assets/images/screenshot.png)
-
-## Description
-
 The system allows users to track the progress of their submitted application. After submission, users receive regular email updates regarding the status of their application, which could be in various stages like:
 
 - **Submitted**: The application has been successfully submitted.
@@ -17,6 +10,10 @@ The system allows users to track the progress of their submitted application. Af
 
 This system ensures that users are always informed about where their application stands, improving transparency and communication.
 
+---
+
+## Frontend
+![My image](https://github.com/rishabhdiwan/ApplicationTrackingSystem/blob/master/assets/images/screenshot.png)
 
 ---
 
@@ -44,3 +41,9 @@ This system ensures that users are always informed about where their application
 ### 3. Email Notifications
 - Users receive a **confirmation email** when they submit an application.
 - If the application status changes, they get an **update email**.
+
+---
+
+## Author
+
+ApplicationTrackingSystem is created by [Rishabh Diwan](https://rishabhdiwan.netlify.app) , a WordPress Developer with over 3 years of working experience.
