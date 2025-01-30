@@ -23,7 +23,7 @@ This system ensures that users are always informed about where their application
 2. Move the theme folder to **wp-content/themes** directory.
 3. Activate the theme through the WP dashboard by navigating to **Appearence > Themes** in WordPress.
 4. Install **ACF**.
-5. Import JSON file from **essentials/acf-data-552-wed.json**.
+5. Import JSON file from **essentials/acf-data-552-wed.json** into ACF plugin to get all the Post Types, Taxonomies and Fields.
 6. Install **WP SMTP** and configure it. Make sure that it is able to send mails using the Test Mail functionality.
 
 ---
