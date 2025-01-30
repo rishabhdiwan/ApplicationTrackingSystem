@@ -18,11 +18,13 @@ get_header();
                     <i class="fa-solid fa-image" style="color: #d558bc;"></i>
                     <label for="applicant_image" class="custom-file-upload" required>Add your image here</label>
                     <input type="file" id="applicant_image" name="applicant_image" style="display: none;" required>
+                    <p id="image-upload-status" class="upload-status"></p>
                 </div>
                 <div class = "applicant-img-or-doc">
                     <i class="fa-solid fa-file" style="color: #d558bc;"></i>
                     <label for="application_document" class="custom-file-upload" required>Add your application below</label>
                     <input type="file" id="application_document" name="application_document" style="display: none;" required>
+                    <p id="document-upload-status" class="upload-status"></p>
                 </div>
                 <input type="submit" value="Submit">
             </form>

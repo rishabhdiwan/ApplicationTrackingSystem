@@ -7,7 +7,7 @@ add_action('init', function() {
 });
 // Theme Enqueue
 function ats_enqueue() {
-    wp_enqueue_script('custom-scipt', get_template_directory_uri() . 'assets/build/js/index.min.js', array('jquery'), 1.0, true);
+    wp_enqueue_script('custom-scipt', get_template_directory_uri() . '/assets/build/js/index.min.js', array('jquery'), 1.0, true);
     wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
     wp_enqueue_style( 'custom-style', get_template_directory_uri() . '/assets/build/css/style.min.css');
 }
@@ -171,3 +171,32 @@ function send_email_on_status_change($post_id, $post, $update) {
     add_action('save_post', 'send_email_on_status_change', 10, 3);
 }
 add_action('save_post', 'send_email_on_status_change', 10, 3);
+
+// Send Email on Post deletion //
+function send_rejection_email_on_deletion($post_id) {
+    // Get post type
+    $post = get_post($post_id);
+    if (!$post || $post->post_type !== 'application') {
+        return;
+    }
+
+    // Get applicant's email from ACF
+    $applicant_email = get_field('email', $post_id);
+    $applicant_name = get_the_title($post_id);
+
+    if (empty($applicant_email) || !is_email($applicant_email)) {
+        error_log("send_rejection_email_on_deletion: Invalid email for post ID $post_id");
+        return;
+    }
+
+    // Prepare email
+    $subject = 'Application Rejected';
+    $message = "Dear $applicant_name,\n\nWe We have to rejected your application, but it will stay in our records and we will contact you if deemed necessary.\n\nRegards,\nThe Hiring Team";
+    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+
+    // Send email
+    wp_mail($applicant_email, $subject, $message, $headers);
+
+    error_log("Rejection email sent to $applicant_email for post ID $post_id.");
+}
+add_action('before_delete_post', 'send_rejection_email_on_deletion');
